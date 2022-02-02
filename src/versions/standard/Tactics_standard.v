@@ -94,9 +94,31 @@ Tactic Notation "verit_bool_no_check"           :=
   let Hs := get_hyps in
   fun Hs => verit_bool_no_check_base_auto Hs; vauto.
 
-
 Tactic Notation "z3_bool_base_auto" constr(h) := z3_bool_base h; try (exact _).
 Tactic Notation "z3_bool_no_check_base_auto" constr(h) := z3_bool_no_check_base h; try (exact _).
+
+Tactic Notation "z3_bool" constr(h) :=
+  let Hs := get_hyps in
+  match Hs with
+  | Some ?Hs => z3_bool_base_auto (Some (h, Hs))
+  | None => z3_bool_base_auto (Some h)
+  end;
+  vauto.
+Tactic Notation "z3_bool"           :=
+  let Hs := get_hyps in
+  z3_bool_base_auto Hs; vauto.
+
+Tactic Notation "z3_bool_no_check" constr(h) :=
+  let Hs := get_hyps in
+  match Hs with
+  | Some ?Hs => z3_bool_no_check_base_auto (Some (h, Hs))
+  | None => z3_bool_no_check_base_auto (Some h)
+  end;
+  vauto.
+Tactic Notation "z3_bool_no_check"           :=
+  let Hs := get_hyps in
+  fun Hs => z3_bool_no_check_base_auto Hs; vauto.
+
 (** Tactics in Prop **)
 
 Ltac zchaff          := prop2bool; zchaff_bool; bool2prop.
@@ -122,6 +144,28 @@ Tactic Notation "z3"           :=
            prop2bool_hyps Hs;
            [ .. | z3_bool_base_auto (Some Hs) ]
          | None => z3_bool_base_auto (@None nat)
+         end; vauto
+  ].
+Tactic Notation "z3_no_check" constr(h) :=
+  prop2bool;
+  [ .. | prop2bool_hyps h;
+         [ .. | let Hs := get_hyps in
+                match Hs with
+                | Some ?Hs =>
+                  prop2bool_hyps Hs;
+                  [ .. | z3_bool_no_check_base_auto (Some (h, Hs)) ]
+                | None => z3_bool_no_check_base_auto (Some h)
+                end; vauto
+         ]
+  ].
+Tactic Notation "z3_no_check"           :=
+  prop2bool;
+  [ .. | let Hs := get_hyps in
+         match Hs with
+         | Some ?Hs =>
+           prop2bool_hyps Hs;
+           [ .. | z3_bool_no_check_base_auto (Some Hs) ]
+         | None => z3_bool_no_check_base_auto (@None nat)
          end; vauto
   ].
 Tactic Notation "verit" constr(h) :=
