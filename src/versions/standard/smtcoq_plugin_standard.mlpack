@@ -48,7 +48,7 @@ Smtlib2_genConstr
 SmtCommands
 
 Verit
-
+Z3
 Lfsc
 
 G_smtcoq

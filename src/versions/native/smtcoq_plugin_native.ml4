@@ -53,6 +53,26 @@ VERNAC COMMAND EXTEND Vernac_verit
   ]
 END
 
+VERNAC COMMAND EXTEND Vernac_z3
+| [ "Parse_certif_z3"
+    ident(t_i) ident(t_func) ident(t_atom) ident(t_form) ident(root) ident(used_roots) ident(trace) string(fsmt) string(fproof) ] ->
+  [
+    Verit.parse_certif t_i t_func t_atom t_form root used_roots trace fsmt fproof
+  ]
+| [ "Z3_Checker" string(fsmt) string(fproof) ] ->
+  [
+    Verit.checker fsmt fproof
+  ]
+| [ "Z3_Checker_Debug" string(fsmt) string(fproof) ] ->
+  [
+    Verit.checker_debug fsmt fproof
+  ]
+| [ "Z3_Theorem" ident(name) string(fsmt) string(fproof) ] ->
+  [
+    Verit.theorem name fsmt fproof
+  ]
+END
+
 VERNAC COMMAND EXTEND Vernac_lfsc
 | [ "Parse_certif_lfsc"
     ident(t_i) ident(t_func) ident(t_atom) ident(t_form) ident(root) ident(used_roots) ident(trace) string(fsmt) string(fproof) ] ->
@@ -91,6 +111,11 @@ let error () = Structures.error "Tactics are not supported with native-coq"
 TACTIC EXTEND Tactic_verit
 | [ "verit_bool_base" constr_list(lpl) ] -> [ error () ]
 | [ "verit_bool_no_check_base" constr_list(lpl) ] -> [ error () ]
+END
+
+TACTIC EXTEND Tactic_z3
+| [ "z3_bool_base" constr_list(lpl) ] -> [ error () ]
+| [ "z3_bool_no_check_base" constr_list(lpl) ] -> [ error () ]
 END
 
 TACTIC EXTEND Tactic_cvc4

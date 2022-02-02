@@ -55,6 +55,26 @@ VERNAC COMMAND EXTEND Vernac_verit CLASSIFIED AS QUERY
   ]
 END
 
+VERNAC COMMAND EXTEND Vernac_z3 CLASSIFIED AS QUERY
+| [ "Parse_certif_z3"
+    ident(t_i) ident(t_func) ident(t_atom) ident(t_form) ident(root) ident(used_roots) ident(trace) string(fsmt) string(fproof) ] ->
+  [
+    Verit.parse_certif t_i t_func t_atom t_form root used_roots trace fsmt fproof
+  ]
+| [ "Z3_Checker" string(fsmt) string(fproof) ] ->
+  [
+    Verit.checker fsmt fproof
+  ]
+| [ "Z3_Checker_Debug" string(fsmt) string(fproof) ] ->
+  [
+    Verit.checker_debug fsmt fproof
+  ]
+| [ "Z3_Theorem" ident(name) string(fsmt) string(fproof) ] ->
+  [
+    Verit.theorem name fsmt fproof
+  ]
+END
+
 VERNAC COMMAND EXTEND Vernac_lfsc CLASSIFIED AS QUERY
 | [ "Parse_certif_lfsc"
     ident(t_i) ident(t_func) ident(t_atom) ident(t_form) ident(root) ident(used_roots) ident(trace) string(fsmt) string(fproof) ] ->
@@ -111,6 +131,11 @@ END
 TACTIC EXTEND Tactic_verit
 | [ "verit_bool_base" constr(lpl) ] -> [ Verit.tactic lpl (get_lemmas ()) ]
 | [ "verit_bool_no_check_base" constr(lpl) ] -> [ Verit.tactic_no_check lpl (get_lemmas ()) ]
+END
+
+TACTIC EXTEND Tactic_z3
+| [ "z3_bool_base" constr(lpl) ] -> [ Verit.tactic lpl (get_lemmas ()) ]
+| [ "z3_bool_no_check_base" constr(lpl) ] -> [ Verit.tactic_no_check lpl (get_lemmas ()) ]
 END
 
 TACTIC EXTEND Tactic_cvc4

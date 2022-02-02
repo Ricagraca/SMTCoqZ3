@@ -37,7 +37,7 @@ let run s pb trace =
   Printf.printf "Calling the %s verifier on %s and %s...\n" (string_of_solver s) pb trace;
   let v = verifier_of_solver s in
   try
-    let t1 = Unix.time () in
+    let t1 = Unix.time () in 
     let res = v pb trace in
     let t2 = Unix.time () in
     if res then

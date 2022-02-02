@@ -35,6 +35,11 @@ Tactic Notation "verit" constr_list(h) :=
 Tactic Notation "verit_no_check" constr_list(h) :=
   fail "Tactics are not supported with native-coq".
 
+Tactic Notation "z3" constr_list(h) :=
+  fail "Tactics are not supported with native-coq".
+Tactic Notation "z3_no_check" constr_list(h) :=
+  fail "Tactics are not supported with native-coq".
+
 Ltac cvc4            :=
   fail "Tactics are not supported with native-coq".
 Ltac cvc4_no_check   :=
