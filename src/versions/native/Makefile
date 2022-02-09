@@ -43,6 +43,7 @@ OCAMLLIBS?=-I ../3rdparty/alt-ergo\
   -I versions/native\
   -I zchaff\
   -I verit\
+  -I z3\
   -I trace\
   -I smtlib2\
   -I lia\
@@ -55,6 +56,7 @@ OCAMLLIBS?=-I ../3rdparty/alt-ergo\
 COQLIBS?=-I ../3rdparty/alt-ergo\
   -I versions/native\
   -I zchaff\
+  -I z3\
   -I verit\
   -I trace\
   -I smtlib2\
@@ -200,6 +202,10 @@ MLFILES:=lia/lia.ml\
   lfsc/lfscParser.ml\
   lfsc/hstring.ml\
   lfsc/shashcons.ml\
+  z3/z3Syntax.ml\
+  z3/z3.ml\
+  z3/z3Lexer.ml\
+  z3/z3Parser.ml\
   verit/veritSyntax.ml\
   verit/verit.ml\
   verit/veritLexer.ml\
@@ -239,6 +245,10 @@ MLIFILES:=lia/lia.mli\
   lfsc/ast.mli\
   lfsc/hstring.mli\
   lfsc/shashcons.mli\
+  z3/z3Syntax.mli\
+  z3/z3.mli\
+  z3/z3Lexer.mli\
+  z3/z3Parser.mli\
   verit/veritSyntax.mli\
   verit/verit.mli\
   verit/veritLexer.mli\
@@ -331,10 +341,10 @@ beautify: $(VFILES:=.beautified)
 $(CMXS): $(CMXA)
 	$(CAMLOPTLINK) $(ZFLAGS) -o $@ -linkall -shared $^
 
-$(CMXA): versions/native/structures.cmx trace/smtMisc.cmx trace/coqTerms.cmx trace/smtBtype.cmx trace/smtForm.cmx trace/smtCertif.cmx trace/smtTrace.cmx trace/smtCnf.cmx trace/satAtom.cmx trace/smtAtom.cmx trace/smtMaps.cmx zchaff/satParser.cmx zchaff/zchaffParser.cmx zchaff/cnfParser.cmx zchaff/zchaff.cmx ../3rdparty/alt-ergo/smtlib2_util.cmx ../3rdparty/alt-ergo/smtlib2_ast.cmx ../3rdparty/alt-ergo/smtlib2_parse.cmx ../3rdparty/alt-ergo/smtlib2_lex.cmx smtlib2/sExpr.cmx smtlib2/sExprParser.cmx smtlib2/sExprLexer.cmx smtlib2/smtlib2_solver.cmx lia/lia.cmx verit/veritSyntax.cmx verit/veritParser.cmx verit/veritLexer.cmx lfsc/shashcons.cmx lfsc/hstring.cmx lfsc/type.cmx lfsc/ast.cmx lfsc/builtin.cmx lfsc/tosmtcoq.cmx lfsc/converter.cmx lfsc/lfscParser.cmx lfsc/lfscLexer.cmx smtlib2/smtlib2_genConstr.cmx trace/smtCommands.cmx verit/verit.cmx lfsc/lfsc.cmx smtcoq_plugin.cmx
+$(CMXA): versions/native/structures.cmx trace/smtMisc.cmx trace/coqTerms.cmx trace/smtBtype.cmx trace/smtForm.cmx trace/smtCertif.cmx trace/smtTrace.cmx trace/smtCnf.cmx trace/satAtom.cmx trace/smtAtom.cmx trace/smtMaps.cmx zchaff/satParser.cmx zchaff/zchaffParser.cmx zchaff/cnfParser.cmx zchaff/zchaff.cmx ../3rdparty/alt-ergo/smtlib2_util.cmx ../3rdparty/alt-ergo/smtlib2_ast.cmx ../3rdparty/alt-ergo/smtlib2_parse.cmx ../3rdparty/alt-ergo/smtlib2_lex.cmx smtlib2/sExpr.cmx smtlib2/sExprParser.cmx smtlib2/sExprLexer.cmx smtlib2/smtlib2_solver.cmx lia/lia.cmx z3/z3Syntax.cmx z3/z3Parser.cmx z3/z3Lexer.cmx verit/veritSyntax.cmx verit/veritParser.cmx verit/veritLexer.cmx lfsc/shashcons.cmx lfsc/hstring.cmx lfsc/type.cmx lfsc/ast.cmx lfsc/builtin.cmx lfsc/tosmtcoq.cmx lfsc/converter.cmx lfsc/lfscParser.cmx lfsc/lfscLexer.cmx smtlib2/smtlib2_genConstr.cmx trace/smtCommands.cmx verit/verit.cmx z3/z3.cmx lfsc/lfsc.cmx smtcoq_plugin.cmx
 	$(CAMLOPTLINK) $(ZFLAGS) -a -o $@ $^
 
-ml: verit/veritParser.ml verit/veritLexer.ml ../3rdparty/alt-ergo/smtlib2_parse.ml ../3rdparty/alt-ergo/smtlib2_lex.ml smtlib2/sExprParser.ml smtlib2/sExprLexer.ml lfsc/lfscParser.ml lfsc/lfscLexer.ml
+ml: z3/z3Parser.ml z3/z3Lexer.ml verit/veritParser.ml verit/veritLexer.ml ../3rdparty/alt-ergo/smtlib2_parse.ml ../3rdparty/alt-ergo/smtlib2_lex.ml smtlib2/sExprParser.ml smtlib2/sExprLexer.ml lfsc/lfscParser.ml lfsc/lfscLexer.ml
 
 
 %.ml %.mli: %.mly
@@ -421,7 +431,7 @@ clean:
 	- rm -rf vtest
 	- rm -rf ztest
 	- rm -rf test
-	- rm -f NSMTCoq* cnf/NSMTCoq* euf/NSMTCoq* lia/NSMTCoq* spl/NSMTCoq* ../unit-tests/NSMTCoq* ../unit-tests/*.vo ../unit-tests/*.zlog ../unit-tests/*.vtlog verit/veritParser.mli verit/veritParser.ml verit/veritLexer.ml ../3rdparty/alt-ergo/smtlib2_parse.mli ../3rdparty/alt-ergo/smtlib2_parse.ml ../3rdparty/alt-ergo/smtlib2_lex.ml smtlib2/sExprParser.mli smtlib2/sExprParser.ml smtlib2/sExprLexer.ml lfsc/lfscLexer.ml lfsc/lfscParser.ml lfsc/lfscParser.mli trace/smtcoq.a
+	- rm -f NSMTCoq* cnf/NSMTCoq* euf/NSMTCoq* lia/NSMTCoq* spl/NSMTCoq* ../unit-tests/NSMTCoq* ../unit-tests/*.vo ../unit-tests/*.zlog ../unit-tests/*.vtlog z3/z3Parser.mli z3/z3Parser.ml z3/z3Lexer.ml  verit/veritParser.mli verit/veritParser.ml verit/veritLexer.ml ../3rdparty/alt-ergo/smtlib2_parse.mli ../3rdparty/alt-ergo/smtlib2_parse.ml ../3rdparty/alt-ergo/smtlib2_lex.ml smtlib2/sExprParser.mli smtlib2/sExprParser.ml smtlib2/sExprLexer.ml lfsc/lfscLexer.ml lfsc/lfscParser.ml lfsc/lfscParser.mli trace/smtcoq.a
 
 archclean:
 	rm -f *.cmx *.o

@@ -24,6 +24,7 @@
 -I lia
 -I smtlib2
 -I trace
+-I z3
 -I verit
 -I zchaff
 -I versions/standard
@@ -95,6 +96,15 @@ smtlib2/smtlib2_solver.mli
 smtlib2/sExprParser.ml
 smtlib2/sExprParser.mli
 smtlib2/sExprLexer.ml
+
+z3/z3Parser.ml
+z3/z3Parser.mli
+z3/z3Lexer.ml
+z3/z3Lexer.mli
+z3/z3.ml
+z3/z3.mli
+z3/z3Syntax.ml
+z3/z3Syntax.mli
 
 verit/veritParser.ml
 verit/veritParser.mli

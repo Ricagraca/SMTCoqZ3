@@ -57,19 +57,19 @@ VERNAC COMMAND EXTEND Vernac_z3
 | [ "Parse_certif_z3"
     ident(t_i) ident(t_func) ident(t_atom) ident(t_form) ident(root) ident(used_roots) ident(trace) string(fsmt) string(fproof) ] ->
   [
-    Verit.parse_certif t_i t_func t_atom t_form root used_roots trace fsmt fproof
+    Z3.parse_certif t_i t_func t_atom t_form root used_roots trace fsmt fproof
   ]
 | [ "Z3_Checker" string(fsmt) string(fproof) ] ->
   [
-    Verit.checker fsmt fproof
+    Z3.checker fsmt fproof
   ]
 | [ "Z3_Checker_Debug" string(fsmt) string(fproof) ] ->
   [
-    Verit.checker_debug fsmt fproof
+    Z3.checker_debug fsmt fproof
   ]
 | [ "Z3_Theorem" ident(name) string(fsmt) string(fproof) ] ->
   [
-    Verit.theorem name fsmt fproof
+    Z3.theorem name fsmt fproof
   ]
 END
 

@@ -31,6 +31,12 @@ digraph {
   "verit.ml" -> "smtlib2_genConstr.ml" ;
   "verit.ml" -> "veritLexer.ml" ;
   "veritLexer.ml" -> "veritParser.ml" ;
+  "z3Syntax.ml" -> "lia.ml" ;
+  "z3Parser.ml" -> "z3Syntax.ml" ;
+  "z3.ml" -> "smtCommands.ml" ;
+  "z3.ml" -> "smtlib2_genConstr.ml" ;
+  "z3.ml" -> "z3Lexer.ml" ;
+  "z3Lexer.ml" -> "z3Parser.ml" ;
   "smtTrace.ml" -> "smtCertif.ml" ;
   "smtMisc.ml" -> "structures.ml" ;
   "smtForm.ml" -> "coqTerms.ml" ;
@@ -44,6 +50,7 @@ digraph {
   "smtlib2_lex.ml" -> "smtlib2_parse.ml" ;
   "smtlib2_genConstr.ml" -> "smtlib2_lex.ml" ;
   "smtlib2_genConstr.ml" -> "veritSyntax.ml" ;
+  "smtlib2_genConstr.ml" -> "z3Syntax.ml" ;
   "smtlib2_ast.ml" -> "smtlib2_util.ml" ;
   "lia.ml" -> "smtAtom.ml" ;
   "zchaff_checker.ml" -> "sat_checker.ml" ;
@@ -51,8 +58,12 @@ digraph {
   "verit_checker.ml" -> "smt_checker.ml" ;
   "verit_checker.ml" -> "verit.ml" ;
   "test.ml" -> "verit_checker.ml" ;
+  "z3_checker.ml" -> "smt_checker.ml" ;
+  "z3_checker.ml" -> "z3.ml" ;
+  "test.ml" -> "z3_checker.ml" ;
   "test.ml" -> "zchaff_checker.ml" ;
   "smtcoq.ml" -> "verit_checker.ml" ;
+  "smtcoq.ml" -> "z3_checker.ml" ;
   "smtcoq.ml" -> "zchaff_checker.ml" ;
   "SMTCoq.v" -> "smtcoq_plugin.ml4" ;
   "smt_checker.ml" -> "extrNative.ml" ;
@@ -60,6 +71,7 @@ digraph {
   "coqTerms.ml" -> "Trace.v" ;
   "smtcoq_plugin.ml4" -> "zchaff.ml" ;
   "smtcoq_plugin.ml4" -> "verit.ml" ;
+  "smtcoq_plugin.ml4" -> "z3.ml" ;
   edge [style=dotted, label=extract] ;
   "smt_checker.ml" -> "Extract.v" ;
   "sat_checker.ml" -> "Extract.v" ;

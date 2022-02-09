@@ -29,6 +29,10 @@ Smtlib2_solver
 
 Lia
 
+Z3Syntax
+Z3Parser
+Z3Lexer
+
 VeritSyntax
 VeritParser
 VeritLexer

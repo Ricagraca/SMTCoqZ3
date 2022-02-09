@@ -24,7 +24,7 @@ Open Scope Z_scope.
 Lemma check_univ (x1: bool):
   (x1 && (negb x1)) = false.
 Proof using.
-  z3. verit.
+  verit.  
 Qed.
 
 Lemma fun_const2 :
