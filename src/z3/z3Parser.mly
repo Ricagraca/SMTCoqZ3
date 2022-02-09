@@ -14,7 +14,7 @@
   open SmtBtype
   open SmtAtom
   open SmtForm
-  open VeritSyntax
+  open Z3Syntax
 
 
 
@@ -49,7 +49,7 @@
 /* type de "retour" du parseur : une clause */
 %type <int> line
 /*
-%type <VeritSyntax.atom_form_lit> term
+%type <Z3Syntax.atom_form_lit> term
 %start term
 */
 %start line
