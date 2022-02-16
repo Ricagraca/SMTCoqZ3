@@ -22,7 +22,7 @@ Open Scope Z_scope.
 (* veriT vernacular commands *)
 
 Section Checker_Sat0.
-  Z3_Checker "sat0.smt2" "sat0.vtlog".
+  Z3_Checker "sat0z3.smt2" "sat0.z3log".
 End Checker_Sat0.
 
 Section Checker_Sat1.

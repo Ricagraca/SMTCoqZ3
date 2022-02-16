@@ -1,0 +1,6 @@
+(set-option :produce-proofs true)
+(set-logic QF_UF)
+(assert (not true))
+(check-sat)
+(get-proof)
+(exit)

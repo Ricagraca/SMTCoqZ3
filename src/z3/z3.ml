@@ -193,13 +193,13 @@ let call_z3 _ rt ro ra_quant rf_quant first lsmt =
         if l = "warning : proof_done: status is still open" then
           raise Unknown
         else if l = "Invalid memory reference" then
-          Structures.warning "z3-warning" ("veriT outputted the warning: " ^ l)
+          Structures.warning "z3-warning" ("Z3 outputted the warning: " ^ l)
         else if n >= 7 && String.sub l 0 7 = "warning" then
-          Structures.warning "z3-warning" ("veriT outputted the warning: " ^ (String.sub l 7 (n-7)))
+          Structures.warning "z3-warning" ("Z3 outputted the warning: " ^ (String.sub l 7 (n-7)))
         else if n >= 8 && String.sub l 0 8 = "error : " then
-          Structures.error ("veriT failed with the error: " ^ (String.sub l 8 (n-8)))
+          Structures.error ("Z3 failed with the error: " ^ (String.sub l 8 (n-8)))
         else
-          Structures.error ("veriT failed with the error: " ^ l)
+          Structures.error ("Z3 failed with the error: " ^ l)
       done
     with End_of_file -> () in
 
@@ -210,8 +210,8 @@ let call_z3 _ rt ro ra_quant rf_quant first lsmt =
     close_in win; Sys.remove wname; res
   with x -> close_in win; Sys.remove wname;
             match x with
-            | Unknown -> Structures.error "veriT returns 'unknown'"
-            | Z3Syntax.Sat -> Structures.error "veriT found a counter-example"
+            | Unknown -> Structures.error "Z3 returns 'unknown'"
+            | Z3Syntax.Sat -> Structures.error "Z3 found a counter-example"
             | _ -> raise x
 
 let z3_logic =

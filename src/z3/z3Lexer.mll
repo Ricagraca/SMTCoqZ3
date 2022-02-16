@@ -17,7 +17,9 @@
   let typ_table = Hashtbl.create 53
   let _ =
     List.iter (fun (kwd, tok) -> Hashtbl.add typ_table kwd tok)
-      [ "input", INPU;
+      [ "proof", PROOF;
+        "asserted", ASSERTED;
+        "input", INPU;
         "deep_res", DEEP;
         "true", TRUE;
         "false", FALS;

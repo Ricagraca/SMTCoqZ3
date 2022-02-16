@@ -35,7 +35,7 @@
   définition des lexèmes
 */
 
-%token EOL SAT
+%token EOL SAT PROOF
 %token COLON
 %token LPAR RPAR LBRACKET RBRACKET
 %token NOT XOR ITE EQ LT LEQ GT GEQ PLUS MINUS MULT OPP LET DIST BBT BITOF BVAND BVOR BVXOR BVADD BVMUL BVULT BVSLT BVULE BVSLE BVCONC BVEXTR BVZEXT BVSEXT BVNOT BVNEG SELECT STORE DIFF BVSHL BVSHR
@@ -56,6 +56,10 @@
 
 
 %%
+
+proof:
+  | LPAR PROOF line RPAR
+;
 
 line:
   | SAT                                                    { raise Sat }

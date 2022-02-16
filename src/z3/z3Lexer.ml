@@ -18,7 +18,9 @@
   let typ_table = Hashtbl.create 53
   let _ =
     List.iter (fun (kwd, tok) -> Hashtbl.add typ_table kwd tok)
-      [ "input", INPU;
+      [ "proof", PROOF;
+        "asserted", ASSERTED;
+        "input", INPU;
         "deep_res", DEEP;
         "true", TRUE;
         "false", FALS;
@@ -146,7 +148,7 @@
         "ext", EXTE;
       ]
 
-# 150 "z3/z3Lexer.ml"
+# 152 "z3/z3Lexer.ml"
 let __ocaml_lex_tables = {
   Lexing.lex_base =
    "\000\000\228\255\062\000\120\000\195\000\014\001\024\001\099\001\
@@ -785,173 +787,173 @@ let rec token lexbuf =
 and __ocaml_lex_token_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 163 "z3/z3Lexer.mll"
+# 165 "z3/z3Lexer.mll"
                                ( token lexbuf )
-# 791 "z3/z3Lexer.ml"
+# 793 "z3/z3Lexer.ml"
 
   | 1 ->
-# 164 "z3/z3Lexer.mll"
+# 166 "z3/z3Lexer.mll"
                                ( EOL )
-# 796 "z3/z3Lexer.ml"
+# 798 "z3/z3Lexer.ml"
 
   | 2 ->
-# 166 "z3/z3Lexer.mll"
+# 168 "z3/z3Lexer.mll"
                                ( COLON )
-# 801 "z3/z3Lexer.ml"
+# 803 "z3/z3Lexer.ml"
 
   | 3 ->
 let
-# 167 "z3/z3Lexer.mll"
+# 169 "z3/z3Lexer.mll"
                 i
-# 807 "z3/z3Lexer.ml"
+# 809 "z3/z3Lexer.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 1) lexbuf.Lexing.lex_curr_pos in
-# 167 "z3/z3Lexer.mll"
+# 169 "z3/z3Lexer.mll"
                                ( SHARPINT (int_of_string i) )
-# 811 "z3/z3Lexer.ml"
+# 813 "z3/z3Lexer.ml"
 
   | 4 ->
-# 169 "z3/z3Lexer.mll"
+# 171 "z3/z3Lexer.mll"
                                ( LPAR )
-# 816 "z3/z3Lexer.ml"
+# 818 "z3/z3Lexer.ml"
 
   | 5 ->
-# 170 "z3/z3Lexer.mll"
+# 172 "z3/z3Lexer.mll"
                                ( RPAR )
-# 821 "z3/z3Lexer.ml"
+# 823 "z3/z3Lexer.ml"
 
   | 6 ->
-# 172 "z3/z3Lexer.mll"
+# 174 "z3/z3Lexer.mll"
                                ( LBRACKET )
-# 826 "z3/z3Lexer.ml"
+# 828 "z3/z3Lexer.ml"
 
   | 7 ->
-# 173 "z3/z3Lexer.mll"
+# 175 "z3/z3Lexer.mll"
                                ( RBRACKET )
-# 831 "z3/z3Lexer.ml"
+# 833 "z3/z3Lexer.ml"
 
   | 8 ->
-# 175 "z3/z3Lexer.mll"
+# 177 "z3/z3Lexer.mll"
                                ( EQ )
-# 836 "z3/z3Lexer.ml"
+# 838 "z3/z3Lexer.ml"
 
   | 9 ->
-# 176 "z3/z3Lexer.mll"
+# 178 "z3/z3Lexer.mll"
                                ( LT )
-# 841 "z3/z3Lexer.ml"
+# 843 "z3/z3Lexer.ml"
 
   | 10 ->
-# 177 "z3/z3Lexer.mll"
+# 179 "z3/z3Lexer.mll"
                                ( LEQ )
-# 846 "z3/z3Lexer.ml"
+# 848 "z3/z3Lexer.ml"
 
   | 11 ->
-# 178 "z3/z3Lexer.mll"
+# 180 "z3/z3Lexer.mll"
                                ( GT )
-# 851 "z3/z3Lexer.ml"
+# 853 "z3/z3Lexer.ml"
 
   | 12 ->
-# 179 "z3/z3Lexer.mll"
+# 181 "z3/z3Lexer.mll"
                                ( GEQ )
-# 856 "z3/z3Lexer.ml"
+# 858 "z3/z3Lexer.ml"
 
   | 13 ->
-# 180 "z3/z3Lexer.mll"
+# 182 "z3/z3Lexer.mll"
                                ( PLUS )
-# 861 "z3/z3Lexer.ml"
+# 863 "z3/z3Lexer.ml"
 
   | 14 ->
-# 181 "z3/z3Lexer.mll"
+# 183 "z3/z3Lexer.mll"
                                ( MINUS )
-# 866 "z3/z3Lexer.ml"
+# 868 "z3/z3Lexer.ml"
 
   | 15 ->
-# 182 "z3/z3Lexer.mll"
+# 184 "z3/z3Lexer.mll"
                                ( OPP )
-# 871 "z3/z3Lexer.ml"
+# 873 "z3/z3Lexer.ml"
 
   | 16 ->
-# 183 "z3/z3Lexer.mll"
+# 185 "z3/z3Lexer.mll"
                                ( MULT )
-# 876 "z3/z3Lexer.ml"
+# 878 "z3/z3Lexer.ml"
 
   | 17 ->
-# 184 "z3/z3Lexer.mll"
+# 186 "z3/z3Lexer.mll"
                                ( IMP )
-# 881 "z3/z3Lexer.ml"
+# 883 "z3/z3Lexer.ml"
 
   | 18 ->
-# 186 "z3/z3Lexer.mll"
+# 188 "z3/z3Lexer.mll"
                                ( SAT )
-# 886 "z3/z3Lexer.ml"
+# 888 "z3/z3Lexer.ml"
 
   | 19 ->
 let
-# 188 "z3/z3Lexer.mll"
+# 190 "z3/z3Lexer.mll"
                       i
-# 892 "z3/z3Lexer.ml"
+# 894 "z3/z3Lexer.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 7) lexbuf.Lexing.lex_curr_pos in
-# 188 "z3/z3Lexer.mll"
+# 190 "z3/z3Lexer.mll"
                                ( TINDEX (int_of_string i) )
-# 896 "z3/z3Lexer.ml"
+# 898 "z3/z3Lexer.ml"
 
   | 20 ->
-# 189 "z3/z3Lexer.mll"
+# 191 "z3/z3Lexer.mll"
                              ( TINT )
-# 901 "z3/z3Lexer.ml"
+# 903 "z3/z3Lexer.ml"
 
   | 21 ->
-# 190 "z3/z3Lexer.mll"
+# 192 "z3/z3Lexer.mll"
                    ( TBOOL )
-# 906 "z3/z3Lexer.ml"
+# 908 "z3/z3Lexer.ml"
 
   | 22 ->
 let
-# 191 "z3/z3Lexer.mll"
+# 193 "z3/z3Lexer.mll"
             i
-# 912 "z3/z3Lexer.ml"
+# 914 "z3/z3Lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 191 "z3/z3Lexer.mll"
+# 193 "z3/z3Lexer.mll"
                                ( try INT (int_of_string i)
 	                         with _ ->
                                    BIGINT (Big_int.big_int_of_string i) )
-# 918 "z3/z3Lexer.ml"
+# 920 "z3/z3Lexer.ml"
 
   | 23 ->
 let
-# 194 "z3/z3Lexer.mll"
+# 196 "z3/z3Lexer.mll"
                  bv
-# 924 "z3/z3Lexer.ml"
+# 926 "z3/z3Lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 194 "z3/z3Lexer.mll"
+# 196 "z3/z3Lexer.mll"
                                ( BITV bv )
-# 928 "z3/z3Lexer.ml"
+# 930 "z3/z3Lexer.ml"
 
   | 24 ->
-# 195 "z3/z3Lexer.mll"
+# 197 "z3/z3Lexer.mll"
                                ( let v = Lexing.lexeme lexbuf in
                                  try Hashtbl.find typ_table v with
                                    | Not_found -> VAR v )
-# 935 "z3/z3Lexer.ml"
+# 937 "z3/z3Lexer.ml"
 
   | 25 ->
 let
-# 198 "z3/z3Lexer.mll"
+# 200 "z3/z3Lexer.mll"
                v
-# 941 "z3/z3Lexer.ml"
+# 943 "z3/z3Lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 198 "z3/z3Lexer.mll"
+# 200 "z3/z3Lexer.mll"
                                ( BINDVAR v )
-# 945 "z3/z3Lexer.ml"
+# 947 "z3/z3Lexer.ml"
 
   | 26 ->
-# 200 "z3/z3Lexer.mll"
+# 202 "z3/z3Lexer.mll"
                    ( ATVAR (Lexing.lexeme lexbuf) )
-# 950 "z3/z3Lexer.ml"
+# 952 "z3/z3Lexer.ml"
 
   | 27 ->
-# 202 "z3/z3Lexer.mll"
+# 204 "z3/z3Lexer.mll"
                                ( raise Eof )
-# 955 "z3/z3Lexer.ml"
+# 957 "z3/z3Lexer.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_token_rec lexbuf __ocaml_lex_state
