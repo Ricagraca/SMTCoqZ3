@@ -18,7 +18,7 @@ Require Import Bool PArray Int63 List ZArith.
 Local Open Scope int63_scope.
 Open Scope Z_scope.
 
-
+*
 (* veriT vernacular commands *)
 
 Section Checker_Sat0.

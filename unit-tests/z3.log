@@ -1,0 +1,40 @@
+[tool-version] Z3 4.8.7
+[mk-app] #1 true
+[mk-app] #2 false
+[mk-app] #1 true
+[mk-app] #2 false
+[mk-app] #3 pi
+[mk-app] #4 euler
+[mk-app] #5 bv
+[attach-meaning] #5 bv #b0
+[mk-var] #6 0
+[mk-var] #7 1
+[mk-var] #8 2
+[mk-var] #9 3
+[mk-var] #10 4
+[mk-var] #11 5
+[mk-var] #12 6
+[mk-var] #13 7
+[mk-var] #14 8
+[mk-var] #15 9
+[mk-var] #16 10
+[mk-var] #17 11
+[mk-var] #18 12
+[mk-var] #19 13
+[mk-var] #20 14
+[mk-app] #21 + #14 #12
+[mk-proof] #22 true-axiom #1
+[attach-enode] #1 0
+[attach-enode] #2 0
+[mk-app] #23 not #1
+[mk-proof] #24 asserted #23
+[inst-discovered] theory-solving 0 basic# ; #23
+[mk-app] #25 = #23 #2
+[mk-proof] #26 rewrite #25
+[instance] 0 #25
+[end-of-instance]
+[mk-proof] #27 mp #24 #26 #2
+[inst-discovered] theory-solving 0 basic# ; #23
+[instance] 0 #25
+[end-of-instance]
+[eof]

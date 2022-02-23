@@ -1,0 +1,89 @@
+  %{
+(**************************************************************************)
+(*                                                                        *)
+(*     SMTCoq                                                             *)
+(*     Copyright (C) 2011 - 2021                                          *)
+(*                                                                        *)
+(*     See file "AUTHORS" for the list of authors                         *)
+(*                                                                        *)
+(*   This file is distributed under the terms of the CeCILL-C licence     *)
+(*                                                                        *)
+(**************************************************************************)
+
+
+open SmtBtype
+open SmtAtom
+open SmtForm
+open Z3Syntax
+open Printf  
+
+
+let parse_bv s =
+  let l = ref [] in
+  for i = 2 to String.length s - 1 do
+    match s.[i] with
+    | '0' -> l := false :: !l
+    | '1' -> l := true :: !l
+    | _ -> assert false
+  done;
+  !l
+
+    %}
+
+
+  /*
+définition des lexèmes
+  */
+
+
+  %token EOL 
+  %token LPAR RPAR 
+  %token PROOF SETLOGIC
+  %token MP ASSERTED REWRITE
+  %token NOT TRUE FALSE EQUAL
+  %token QFUF
+
+  /* type de "retour" du parseur : une clause */
+      %type <int> line
+	/*
+      %type <Z3Syntax.atom_form_lit> term
+	%start term
+	*/
+      %start line
+
+	%%
+
+      line:
+    | LPAR setlogic getproof RPAR EOL {};
+
+      setlogic:
+    | LPAR SETLOGIC logic RPAR {};
+
+
+      logic:
+    | QFUF {};
+      
+      getproof:
+    | LPAR PROOF proof RPAR {};
+
+      proof:
+    | LPAR rule term RPAR {};
+	
+	rule:
+    | MP             {printf ("mp");}
+    | ASSERTED       {printf ("asserted");}
+    | REWRITE        {printf ("rewrite");};
+      
+      term:
+    | LPAR term RPAR {}
+    | TRUE           {}
+    | FALSE          {}
+    | EQUAL LPAR term RPAR LPAR term RPAR {}
+    | NOT term {}; 
+      
+      
+
+
+
+      
+      
